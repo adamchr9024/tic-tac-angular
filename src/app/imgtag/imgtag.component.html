@@ -12,3 +12,8 @@
 
 -->
 <img *ngFor="let theimage of imgSrcClass" width="33%" height="25%" (click)="getNewImage(theimage)" class={{theimage.class}} src={{theimage.src}}/>
+
+<br/><br/>
+<input [ngStyle]="{backgroundColor: 'yellow'}" type="text"[(ngModel)]='srcimg'>
+<p>{{srcimg}}</p>
+<button [disabled]="srcimg.trim()===''">test button</button>
