@@ -13,6 +13,7 @@ export class ImgComponent implements OnInit{
   x100:string = '../../assets/images/x100.png';
   srcimg:string = this.blank;
    turn:string = 'x'
+  srcimg1:boolean = false;
 
   imgSrcClass:Array< { id: number, src: string, class:string }> = 
   Array(
