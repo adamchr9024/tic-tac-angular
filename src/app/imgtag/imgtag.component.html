@@ -1,0 +1,14 @@
+<!--img src={{imgSrcClass[0].src}} class={{imgSrcClass[0].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[1].src}} class={{imgSrcClass[1].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[2].src}} class={{imgSrcClass[2].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/><br>
+<img src={{imgSrcClass[3].src}} class={{imgSrcClass[3].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[4].src}} class={{imgSrcClass[4].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[5].src}} class={{imgSrcClass[5].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/><br/>
+<img src={{imgSrcClass[6].src}} class={{imgSrcClass[6].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[7].src}} class={{imgSrcClass[7].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/>
+<img src={{imgSrcClass[8].src}} class={{imgSrcClass[8].class}} (click)='getNewImage(this)' width="25%" height="25%" alt='square'/
+<button *ngFor="let imageButton of imageButtons; let i = index" (click)="onClick(imageButton)" class="button">{{i}}</button>
+
+
+-->
+<img *ngFor="let theimage of imgSrcClass" width="33%" height="25%" (click)="getNewImage(theimage)" class={{theimage.class}} src={{theimage.src}}/>

@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+.l2 , .l5, .l8 {margin-right: 10%; background-color: antiquewhite;}
+.l0, .l3, .l1, .l4, .l6, .l7 {border-right: 2px solid black; background-color: antiquewhite; }
+.l6, .l7 , .l8 {border-bottom:0px; background-color: antiquewhite;}
+.left{float:left; color:red}
+.right{float: right;}
+.result {color:purple;}
+label {font-weight: bold;
+    font-size: 1.2rem;
+}
+
+div img{
+    /* margin: px 5px 5px 5px; */
+    margin: 0px 0px 0px 0px;
+    border-bottom:2px solid black;
+    object-fit: cover;
+    box-sizing: border-box;
+    outline: 0px;
+    vertical-align: top;  
+    
+  
+    width: 23%; 
+    max-width:25%;
+    max-height: 25%;
+    display: inline-block;
+   
+  }
+h1 {text-align: center;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+img {
+    background-color: antiquewhite;
+}
