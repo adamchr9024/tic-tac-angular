@@ -2,9 +2,9 @@
 .l2 , .l5, .l8 {margin-right: 10%; background-color: antiquewhite;}
 .l0, .l3, .l1, .l4, .l6, .l7 {border-right: 2px solid black; background-color: antiquewhite; }
 .l6, .l7 , .l8 {border-bottom:0px; background-color: antiquewhite;}
-.left{float:left; color:red}
-.right{float: right;}
-.result {color:purple;}
+.left{float:left; color:red; margin-left: 140px;}
+.right{float: right; margin-right: 120px;}
+.result {color:purple; }
 label {font-weight: bold;
     font-size: 1.2rem;
 }

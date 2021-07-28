@@ -4,3 +4,9 @@ img{
 app-imgtag{
     background-color: antiquewhite;
 }
+button{
+    color: fuchsia;
+    border: 2px darkblue dotted;
+
+
+}
