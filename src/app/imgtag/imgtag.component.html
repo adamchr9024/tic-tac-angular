@@ -3,6 +3,8 @@
 <img *ngFor="let theimage of imgSrcClass" width="33%" height="25%" (click)="getNewImage(theimage)" class={{theimage.clazz}} src={{theimage.src}} />
 
 <br/><br/>
+<label class="left">Next Move: {{move}}</label><button class="but primary" [disabled]="srcimg.trim()===''" (click)='newgame()'>new game</button>
+<label class='result'>Game Results: {{result}}</label><br />
 <input [ngStyle]="{backgroundColor: 'yellow'}" type="text"[(ngModel)]='srcimg'>
 <p>{{srcimg}}</p>
-<button class="but primary" [disabled]="srcimg.trim()===''" (click)='newgame()'>new game</button>
+
