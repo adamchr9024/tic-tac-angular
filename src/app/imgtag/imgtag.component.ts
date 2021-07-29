@@ -5,7 +5,7 @@ import { Component, OnInit, ElementRef } from "@angular/core";
   selector: 'app-imgtag',
   templateUrl: './imgtag.component.html',
   styleUrls: ['./imgtag.component.css']
-
+//https://www.typescriptlang.org/docs/handbook/2/objects.html
 })
 export class ImgComponent implements OnInit {
   blank: string = '../../assets/images/blank.png';
@@ -16,8 +16,9 @@ export class ImgComponent implements OnInit {
   srcimg1: boolean = false;
   countmoves: number = 0
   result: string = "Pending"
-  move: string = ""
+  move: string = "Player 1: 'X'"
   awinner: boolean = false
+  toggle:boolean = false;
 
   imgSrcClass: Array<{ id: number, src: string, clazz: string }> =
     Array(
@@ -32,6 +33,7 @@ export class ImgComponent implements OnInit {
       { "id": 8, "src": this.blank, clazz: 'l8' },
     );
   newgame() {
+    this.toggle=!this.toggle
     // let images = document.getElementsByTagName('img')
     //console.log("images", images
     let i: number = 0;
@@ -39,9 +41,13 @@ export class ImgComponent implements OnInit {
       this.imgSrcClass[i].src = this.blank;
     }
     this.countmoves = 0
-    this.turn = 'x'
-    this.move="Player 1: 'X'"
+    console.log(this.turn)
+    this.turn = this.toggle?'o':'x'
+    this.move=this.turn==='o'?"Computer 'O'":"Player 1: 'X'"
     this.result="Pending"
+    console.log('before computer move call')
+    if(this.turn==='o')
+      this.computermove()
 
   }
 
@@ -59,8 +65,9 @@ export class ImgComponent implements OnInit {
 
       object.src = this.o100;
     }
-
+    this.move = this.turn === 'x'? "Player 2: 'O' Computer": "Player 1: 'X'"
     this.turn = this.turn === 'x' ? 'o' : 'x';
+    
     ++this.countmoves
     if (this.countmoves >= 5)  //do we have a winner
       {
@@ -73,8 +80,8 @@ export class ImgComponent implements OnInit {
     return false;
   }
   ngOnInit() {
-    this.srcimg = this.blank;
-    this.turn = 'x'
+    //this.srcimg = this.blank;
+   // this.turn = 'x'
     //    this.imgSrcClass.forEach((element)=>{
     //        console.log(element.clazz)
     //        console.log(element.id)
@@ -88,8 +95,8 @@ export class ImgComponent implements OnInit {
     let j = 4
     // console.log('computer move called ' + ++countcalls + " themove = " + themove)
     //  let theimages = Array.from(document.getElementsByTagName('img'));
-    if (this.countmoves === 1) {
-      this.getNewImage(this.imgSrcClass[4])
+    if (this.countmoves < 2 && this.imgSrcClass[j].src===this.blank) {
+      setTimeout( ()=>  this.getNewImage(this.imgSrcClass[j]), 3000)
       return;
     }
 
@@ -101,7 +108,7 @@ export class ImgComponent implements OnInit {
       }
     }
     if (this.turn === 'o') {
-      this.getNewImage(this.imgSrcClass[j])
+      setTimeout( ()=>  this.getNewImage(this.imgSrcClass[j]), 3000)
     }
 
 

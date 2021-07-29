@@ -8,6 +8,7 @@ button{
     color: fuchsia;
     border: 2px darkblue dotted;
     margin-left:0;
-    margin-right:25px;
+    margin-right:90px;
+    padding: 0;
 
 }
