@@ -197,7 +197,7 @@ export class ImgComponent implements OnInit {
     let winlose: number = -1
     let neighbors: Neighbors
     let src:string = turn==='x'?this.x100:this.o100
-
+    console.log(this.imgSrcClass.length)
     for (index = 0; index < this.imgSrcClass.length; index+=1) {
       
       if(this.imgSrcClass[index].src !== src)
@@ -364,7 +364,7 @@ export class ImgComponent implements OnInit {
     let src = turn === 'x' ? this.x100 : this.o100
     if (this.imgSrcClass[neighbor1].src === src && this.imgSrcClass[neighbor2].src === this.blank)
       return neighbor2;
-    if (this.imgSrcClass[neighbor1].src === this.blank && this.imgSrcClass[2].src === src)
+    if (this.imgSrcClass[neighbor1].src === this.blank && this.imgSrcClass[neighbor2].src === src)
       return neighbor1;
     return -1
   }
