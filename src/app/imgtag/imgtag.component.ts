@@ -91,15 +91,15 @@ export class ImgComponent implements OnInit {
   }
   computermove() {
     //console.log('computer moved called' + this.turn + this.countmoves)
-    let winningmove:number = this.canIwinorlose("o") 
+    let winningmove: number = this.canIwinorlose("o")
     console.log('winning move computer move', winningmove)
-    if (winningmove !==-1 && this.turn === 'o'){
+    if (winningmove !== -1 && this.turn === 'o') {
       this.makethemove(winningmove)
       //setTimeout(() => this.getNewImage(this.imgSrcClass[winningmove]), 3000)
       return
     }
     winningmove = this.canIwinorlose("x") //dont lose
-    if (winningmove !==-1 && this.turn === 'o'){
+    if (winningmove !== -1 && this.turn === 'o') {
       this.makethemove(winningmove)
       //setTimeout(() => this.getNewImage(this.imgSrcClass[winningmove]), 3000)
       return
@@ -110,7 +110,7 @@ export class ImgComponent implements OnInit {
     //  let theimages = Array.from(document.getElementsByTagName('img'));
     if (this.countmoves < 2 && this.imgSrcClass[j].src === this.blank) {
       this.makethemove(j)
-     // setTimeout(() => this.getNewImage(this.imgSrcClass[j]), 3000)
+      // setTimeout(() => this.getNewImage(this.imgSrcClass[j]), 3000)
       return;
     }
 
@@ -123,12 +123,12 @@ export class ImgComponent implements OnInit {
     }
     if (this.turn === 'o') {
       this.makethemove(j)
-     // setTimeout(() => this.getNewImage(this.imgSrcClass[j]), 3000)
+      // setTimeout(() => this.getNewImage(this.imgSrcClass[j]), 3000)
     }
 
 
   }
-  makethemove(index:number){
+  makethemove(index: number) {
 
     setTimeout(() => this.getNewImage(this.imgSrcClass[index]), 3000)
   }
@@ -196,21 +196,21 @@ export class ImgComponent implements OnInit {
     let index: number = 0;
     let winlose: number = -1
     let neighbors: Neighbors
-    let src:string = turn==='x'?this.x100:this.o100
+    let src: string = turn === 'x' ? this.x100 : this.o100
 
-    for (index = 0; index < this.imgSrcClass.length; index+=1) {
-      
-      if(this.imgSrcClass[index].src !== src)
-           continue;
+    for (index = 0; index < this.imgSrcClass.length; index += 1) {
+
+      if (this.imgSrcClass[index].src !== src)
+        continue;
       switch (index) {
 
         case 0: case 2: case 6: case 4: case 8: {
-          neighbors = this.getNeighbor(index, "row") 
+          neighbors = this.getNeighbor(index, "row")
           neighbor1 = neighbors.neighbor1
           neighbor2 = neighbors.neighbor2
           winlose = this.possiblewin(turn, neighbor1, neighbor2)
           //console.log("neighbors",neighbors)
-          console.log(turn +  ' row winlose=',winlose)
+          //console.log(turn + ' row winlose=', winlose)
           if (winlose === -1) {
             neighbors = this.getNeighbor(index, "column")
             neighbor1 = neighbors.neighbor1
@@ -223,18 +223,26 @@ export class ImgComponent implements OnInit {
             return winlose;
           if (winlose === -1) {
             neighbors = this.getNeighbor(index, "diagonal")
-            neighbor1 = neighbors.neighbor1
-            neighbor2 = neighbors.neighbor2
+            neighbor1 = neighbors.neighbor1  //4
+            neighbor2 = neighbors.neighbor2  //6
+            //console.log
             winlose = this.possiblewin(turn, neighbor1, neighbor2)
-           // console.log("winlose diagonal ",index)
+          console.log(turn + ' diagonal winlose=', winlose)
+            // console.log("winlose diagonal ",index)
             //winlose = this.diagonalwin(turn, index)
           }
           else
             return winlose
+          //check last case  
+          if(winlose !==-1) {
+            console.log("in last case")
+            return winlose 
+
+          }
           break
 
         }
-        case 1: case 3: case 5: case 7: { 
+        case 1: case 3: case 5: case 7: {
           neighbors = this.getNeighbor(index, "row")
           neighbor1 = neighbors.neighbor1
           neighbor2 = neighbors.neighbor2
@@ -249,7 +257,7 @@ export class ImgComponent implements OnInit {
           }
           else
             return winlose;
-            break
+          break
 
         }
         default: {
@@ -258,12 +266,21 @@ export class ImgComponent implements OnInit {
         }
       }//end switch
     }//end for
+    neighbor1 = 2
+    neighbor2 = 6
+    index = 4
+    if (this.imgSrcClass[index].src == src) {
+      winlose = this.possiblewin(turn, neighbor1, neighbor2)
+      console.log("diagnol winlose for case 2 4 6 ", winlose)
+    }
+    //check case for 4 3 and 6 neighbore 
+
     return winlose // cannot win
   }
   possiblewin(turn: string, neighbor1: number, neighbor2: number): number {
     return this.checkneighborsrow(turn, neighbor1, neighbor2)
   }
-
+//neighbors = this.getNeighbor(index, "diagonal")
   getNeighbor(index: number, rowcoldia: string): Neighbors {
     let neighbors: Neighbors = new Neighbors()
     if (rowcoldia === "row") {
@@ -331,7 +348,7 @@ export class ImgComponent implements OnInit {
           break;
         }
         //4 is a special case 
-        case 4: {
+        case 4: {  //test for 3 and 6 also
           neighbors.neighbor1 = 0
           neighbors.neighbor2 = 8
           break;
@@ -364,7 +381,7 @@ export class ImgComponent implements OnInit {
     let src = turn === 'x' ? this.x100 : this.o100
     if (this.imgSrcClass[neighbor1].src === src && this.imgSrcClass[neighbor2].src === this.blank)
       return neighbor2;
-    if (this.imgSrcClass[neighbor1].src === this.blank && this.imgSrcClass[2].src === src)
+    if (this.imgSrcClass[neighbor1].src === this.blank && this.imgSrcClass[neighbor2].src === src)
       return neighbor1;
     return -1
   }
