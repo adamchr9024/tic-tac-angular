@@ -1,6 +1,6 @@
 
 
-<img *ngFor="let theimage of imgSrcClass" width="33%" height="25%" (click)="getNewImage(theimage)" class={{theimage.clazz}} src={{theimage.src}} />
+<img *ngFor="let theimage of imgSrcClass" width="33%" height="25%" (click)="getNewImage(theimage, $event)" class={{theimage.clazz}} src={{theimage.src}} />
 
 <br/><br/>
 <label class="left">Next Move: {{move}}</label><button class="but primary" [disabled]="srcimg.trim()===''" (click)='newgame()'>new game</button>
